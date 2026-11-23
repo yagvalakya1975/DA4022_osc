@@ -35,7 +35,11 @@ If the model download stays at `0%` or reports a read timeout, stop it with `Ctr
 HF_HUB_DISABLE_XET=1 HF_HUB_DOWNLOAD_TIMEOUT=120 python run_calibration.py
 ```
 
-This produces the calibration handoff for a quantizer. It does not fit AAAC quantization parameters or save a quantized model checkpoint; that step is not implemented in this repository yet.
+This produces the calibration handoff for a quantizer. It does not fit AAAC quantization parameters or save a quantized model checkpoint itself.
+
+## AAAC fit (Member 2)
+
+The AAAC learning algorithm lives in [`Quantization_and_Pruning/quantization/aaac/`](Quantization_and_Pruning/quantization/aaac/README.md). It takes each layer's weight `W[out, in]` and calibration importance `I[in]` from the step above and produces the per-group scales, two BF16 codebooks, table selectors, and 4-bit indices. Part A (scaling, quantile initialization, weighted group assignment, initial codebooks, and the deterministic fit driver) is implemented. Part B (weighted Lloyd updates and BF16 finalization in `lloyd.py`) is still to do; the folder README explains exactly what remains.
 
 ## Run in Google Colab
 
