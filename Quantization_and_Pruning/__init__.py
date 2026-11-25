@@ -1,1 +1,1 @@
-"""Model compression methods (quantization and pruning)..."""
+"""Model compression methods (quantization and pruning)."""
