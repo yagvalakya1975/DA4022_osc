@@ -1,1 +1,1 @@
-"""Weight quantization method"""
+"""Weight quantization method."""
